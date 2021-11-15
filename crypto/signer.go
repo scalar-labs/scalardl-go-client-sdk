@@ -13,13 +13,13 @@ type Signer interface {
 	Sign(message []byte) (signed []byte, err error)
 }
 
-type EcSha256Signer struct {
+type EcdsaSha256Signer struct {
 	key *ecdsa.PrivateKey
 }
 
-func NewEcSha256Signer(raw []byte) (s EcSha256Signer, err error) {
+func NewEcdsaSha256Signer(key []byte) (s EcdsaSha256Signer, err error) {
 	var block *pem.Block
-	block, _ = pem.Decode(raw)
+	block, _ = pem.Decode(key)
 
 	if block == nil || block.Type != "EC PRIVATE KEY" {
 		err = errors.New("not a EC private key")
@@ -31,7 +31,7 @@ func NewEcSha256Signer(raw []byte) (s EcSha256Signer, err error) {
 	return
 }
 
-func (s EcSha256Signer) Sign(message []byte) (signed []byte, err error) {
+func (s EcdsaSha256Signer) Sign(message []byte) (signed []byte, err error) {
 	hash := sha256.Sum256(message)
 
 	return ecdsa.SignASN1(rand.Reader, s.key, hash[:])

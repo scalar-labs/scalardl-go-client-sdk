@@ -10,7 +10,7 @@ import (
 )
 
 func Test_NewEcSha256Signer_WithIncorrectKey_ShouldGetError(t *testing.T) {
-	if _, err := NewEcSha256Signer([]byte("not a key")); err == nil {
+	if _, err := NewEcdsaSha256Signer([]byte("not a key")); err == nil {
 		t.Errorf("should get an error")
 	}
 }
@@ -23,7 +23,7 @@ XYWdrgo0Y3eXEhvK0lsURO9N0nrPiQWT4A==
 -----END EC PRIVATE KEY-----
 `
 
-	if _, err := NewEcSha256Signer([]byte(key)); err != nil {
+	if _, err := NewEcdsaSha256Signer([]byte(key)); err != nil {
 		t.Errorf("should get an correct signer instance")
 	}
 }
@@ -52,11 +52,11 @@ SM49BAMCA0cAMEQCIC/Bo4oNU6yHFLJeme5ApxoNdyu3rWyiqWPxJmJAr9L0AiBl
 Gc/v+yh4dHIDhCrimajTQAYOG9n0kajULI70Gg7TNw==
 -----END CERTIFICATE-----
 `
-	var s EcSha256Signer
+	var s EcdsaSha256Signer
 	var err error
 	var signed []byte
 
-	if s, err = NewEcSha256Signer([]byte(privateKey)); err != nil {
+	if s, err = NewEcdsaSha256Signer([]byte(privateKey)); err != nil {
 		t.Errorf("should get an correct signer instance")
 	}
 
