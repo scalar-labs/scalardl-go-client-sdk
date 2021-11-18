@@ -35,6 +35,9 @@ const (
 	AUDITOR_LINEARIZABLE_VALIDATION_CONTRACT_ID string = "scalar.dl.client.auditor.linearizable_validation.contract_id"
 )
 
+// ClientConfig defines the structure of the configurations that is used in ClientService.
+// We can use NewClientConfigFromJavaProperties to create it from Java Properties,
+// or use NewClientConfigFromJson to create it from JSON.
 type ClientConfig struct {
 	LedgerHost                              string `validate:"required"`
 	LedgerPort                              uint16 `validate:"lt=65536"`
@@ -60,10 +63,27 @@ type ClientConfig struct {
 
 var validate *validator.Validate = validator.New()
 
+// Validate checks if mandatory fields are assign and well-formatted.
 func (c *ClientConfig) Validate() error {
 	return validate.Struct(c)
 }
 
+// NewClientConfigWithDefaultValues creates ClientConfig instance with following default values.
+// ClientConfig{
+//		LedgerHost:                              "localhost",
+//		LedgerPort:                              50051,
+//		LedgerPrivilegedPort:                    50052,
+//		CertVersion:                             1,
+//		IsTlsEnabled:                            false,
+//		IsAuditorEnabled:                        false,
+//		ClientMode:                              "CLIENT",
+//		AuditorHost:                             "localhost",
+//		AuditorPort:                             40051,
+//		AuditorPrivilegedPort:                   40052,
+//		IsAuditorTlsEnabled:                     false,
+//		IsAuditorLinearizableValidationEnabled:  false,
+//		AuditorLinearizableValidationContractId: "validate-ledger",
+//	}
 func NewClientConfigWithDefaultValues() ClientConfig {
 	return ClientConfig{
 		LedgerHost:                              "localhost",
@@ -82,6 +102,7 @@ func NewClientConfigWithDefaultValues() ClientConfig {
 	}
 }
 
+// NewClientConfigFromJavaProperties parses the given Java Properties string to create ClientConfig according to correspoinding properties.
 func NewClientConfigFromJavaProperties(javaProperties string) (ClientConfig, error) {
 	var v *viper.Viper = viper.New()
 	v.SetConfigType("properties")
@@ -89,6 +110,7 @@ func NewClientConfigFromJavaProperties(javaProperties string) (ClientConfig, err
 	return readConfigByViper(v, javaProperties)
 }
 
+// NewClientConfigFromJson parses the given JSON string to create ClientConfig according to correspoinding properties.
 func NewClientConfigFromJson(json string) (ClientConfig, error) {
 	var v *viper.Viper = viper.New()
 	v.SetConfigType("json")
