@@ -28,6 +28,9 @@ const (
 	// INCONSISTENT_REQUEST indicates that a request is inconsistent and could be maliciously tampered.
 	INCONSISTENT_REQUEST = 306
 
+	// INVALID_SIGNATURE indicates that the given signature is invalid or a signature can not be created for some reason.
+	INVALID_SIGNATURE = 400
+
 	// UNLOADABLE_KEY indicates that the given key could not be loaded for some reason, e.g. it is invalid.
 	UNLOADABLE_KEY = 401
 
