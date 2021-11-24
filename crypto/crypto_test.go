@@ -1,13 +1,6 @@
 package crypto
 
-import (
-	"encoding/pem"
-	"testing"
-
-	"crypto/ecdsa"
-	"crypto/sha256"
-	"crypto/x509"
-)
+import "testing"
 
 func Test_NewEcSha256Signer_WithIncorrectKey_ShouldGetError(t *testing.T) {
 	if _, err := NewEcdsaSha256Signer([]byte("not a key")); err == nil {
@@ -29,13 +22,14 @@ XYWdrgo0Y3eXEhvK0lsURO9N0nrPiQWT4A==
 }
 
 func Test_EcSha256Signer_WithCorrectKey_ShouldSignCorrectly(t *testing.T) {
-	var privateKey string = `-----BEGIN EC PRIVATE KEY-----
+	var (
+		privateKey string = `-----BEGIN EC PRIVATE KEY-----
 MHcCAQEEICcJGMEw3dyXUGFu/5a36HqY0ynZi9gLUfKgYWMYgr/IoAoGCCqGSM49
 AwEHoUQDQgAEBGuhqumyh7BVNqcNKAQQipDGooUpURve2dO66pQCgjtSfu7lJV20
 XYWdrgo0Y3eXEhvK0lsURO9N0nrPiQWT4A==
 -----END EC PRIVATE KEY-----
 `
-	var publicKey string = `-----BEGIN CERTIFICATE-----
+		publicKey string = `-----BEGIN CERTIFICATE-----
 MIICizCCAjKgAwIBAgIUMEUDTdWsQpftFkqs6bCd6U++4nEwCgYIKoZIzj0EAwIw
 bzELMAkGA1UEBhMCSlAxDjAMBgNVBAgTBVRva3lvMQ4wDAYDVQQHEwVUb2t5bzEf
 MB0GA1UEChMWU2FtcGxlIEludGVybWVkaWF0ZSBDQTEfMB0GA1UEAxMWU2FtcGxl
@@ -52,37 +46,33 @@ SM49BAMCA0cAMEQCIC/Bo4oNU6yHFLJeme5ApxoNdyu3rWyiqWPxJmJAr9L0AiBl
 Gc/v+yh4dHIDhCrimajTQAYOG9n0kajULI70Gg7TNw==
 -----END CERTIFICATE-----
 `
-	var s EcdsaSha256Signer
-	var err error
-	var signed []byte
+		s         Signer
+		v         Verifier
+		err       error
+		signature []byte
+	)
 
 	if s, err = NewEcdsaSha256Signer([]byte(privateKey)); err != nil {
 		t.Errorf("should get an correct signer instance")
 	}
 
-	if signed, err = s.Sign([]byte("hello world!")); err != nil {
+	if signature, err = s.Sign([]byte("hello world!")); err != nil {
 		t.Errorf("should be able to sign")
 	}
 
-	if len(signed) < 2 || len(signed) < (int(signed[1])-2) {
+	if len(signature) < 2 || len(signature) < (int(signature[1])-2) {
 		t.Errorf("signature is in an incorrect length")
 	}
 
-	if int(signed[0]) != 48 {
+	if int(signature[0]) != 48 {
 		t.Errorf("signature has an incorrect first-byte")
 	}
 
-	var block *pem.Block
-	var certificate *x509.Certificate
-
-	block, _ = pem.Decode([]byte(publicKey))
-	if certificate, err = x509.ParseCertificate(block.Bytes); err != nil {
-		t.Errorf("certificate should be parsed")
+	if v, err = NewEcdsaSha256Verifier([]byte(publicKey)); err != nil {
+		t.Errorf("should be able to create validator")
 	}
 
-	var hashed = sha256.Sum256([]byte("hello world!"))
-
-	if !ecdsa.VerifyASN1(certificate.PublicKey.(*ecdsa.PublicKey), hashed[:], signed) {
+	if !v.Verify([]byte("hello world!"), signature) {
 		t.Errorf("signature should be verified")
 	}
 }
