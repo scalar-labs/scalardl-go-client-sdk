@@ -1,6 +1,8 @@
 package dl
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_EqualWithSameJsonObject_ShouldBeTrue(t *testing.T) {
 	var shouldBeEquivalent bool = JsonObject{
@@ -36,5 +38,27 @@ func Test_EqualWithDifferentJsonObject_ShouldBeFalse(t *testing.T) {
 
 	if shouldNotBeEquivalent {
 		t.Errorf("JsonObject.Equal should be able distinguish two JsonObject variables that have different values")
+	}
+}
+
+func Test_String_ShouldReturnCorrectJSON(t *testing.T) {
+	var (
+		object = JsonObject{
+			"string": "i-am-string",
+			"number": 0,
+			"array": []JsonObject{
+				{"in-array1": "array1"},
+				{"in-array2": "array2"},
+			},
+			"object": JsonObject{
+				"in-object": "object",
+			},
+		}
+
+		json = object.String()
+	)
+
+	if json != `{"array":[{"in-array1":"array1"},{"in-array2":"array2"}],"number":0,"object":{"in-object":"object"},"string":"i-am-string"}` {
+		t.Errorf("should return correct JSON")
 	}
 }
