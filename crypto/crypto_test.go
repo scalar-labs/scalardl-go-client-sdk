@@ -47,7 +47,7 @@ Gc/v+yh4dHIDhCrimajTQAYOG9n0kajULI70Gg7TNw==
 -----END CERTIFICATE-----
 `
 		s         Signer
-		v         Varifier
+		v         Verifier
 		err       error
 		signature []byte
 	)
