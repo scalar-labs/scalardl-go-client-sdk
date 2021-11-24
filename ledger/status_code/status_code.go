@@ -1,6 +1,6 @@
 package status_code
 
-// StatusCode hints what happened after a gRPC request are handled.
+// StatusCode hints at what happened after a gRPC request is handled.
 type StatusCode int
 
 const (
