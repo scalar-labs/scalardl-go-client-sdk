@@ -7,6 +7,14 @@ type LedgerError struct {
 	statusCode status_code.StatusCode
 }
 
+// NewLedgerError creates the ledger error instance.
+func NewLedgerError(statusCode status_code.StatusCode, message string) LedgerError {
+	return LedgerError{
+		message:    message,
+		statusCode: statusCode,
+	}
+}
+
 // Error just returns the error message.
 func (e LedgerError) Error() string {
 	return e.message
