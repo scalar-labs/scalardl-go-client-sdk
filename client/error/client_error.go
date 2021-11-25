@@ -9,6 +9,14 @@ type ClientError struct {
 	statusCode status_code.StatusCode
 }
 
+// NewClientError creates the client error instance.
+func NewClientError(statusCode status_code.StatusCode, message string) ClientError {
+	return ClientError{
+		message:    message,
+		statusCode: statusCode,
+	}
+}
+
 // Error just returns the error message.
 func (e ClientError) Error() string {
 	return e.message
