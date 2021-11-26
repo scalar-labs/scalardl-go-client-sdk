@@ -5,52 +5,52 @@ import (
 )
 
 func Test_EqualWithSameJsonObject_ShouldBeTrue(t *testing.T) {
-	var shouldBeEquivalent bool = JsonObject{
-		"object": JsonObject{
+	var shouldBeEquivalent bool = JSONObject{
+		"object": JSONObject{
 			"number": 1.23,
 			"string": "string",
 		},
-	}.Equal(JsonObject{
-		"object": JsonObject{
+	}.Equal(JSONObject{
+		"object": JSONObject{
 			"number": 1.23,
 			"string": "string",
 		},
 	})
 
 	if !shouldBeEquivalent {
-		t.Errorf("JsonObject.Equal should be able distinguish two JsonObject variables that have same values")
+		t.Errorf("JSONObject.Equal should be able distinguish two JSONObject variables that have same values")
 	}
 
 }
 
 func Test_EqualWithDifferentJsonObject_ShouldBeFalse(t *testing.T) {
-	var shouldNotBeEquivalent bool = JsonObject{
-		"object": JsonObject{
+	var shouldNotBeEquivalent bool = JSONObject{
+		"object": JSONObject{
 			"number": 0,
 			"string": "hello world",
 		},
-	}.Equal(JsonObject{
-		"object": JsonObject{
+	}.Equal(JSONObject{
+		"object": JSONObject{
 			"number": 1.23,
 			"string": "string",
 		},
 	})
 
 	if shouldNotBeEquivalent {
-		t.Errorf("JsonObject.Equal should be able distinguish two JsonObject variables that have different values")
+		t.Errorf("JSONObject.Equal should be able distinguish two JSONObject variables that have different values")
 	}
 }
 
 func Test_String_ShouldReturnCorrectJSON(t *testing.T) {
 	var (
-		object = JsonObject{
+		object = JSONObject{
 			"string": "i-am-string",
 			"number": 0,
-			"array": []JsonObject{
+			"array": []JSONObject{
 				{"in-array1": "array1"},
 				{"in-array2": "array2"},
 			},
-			"object": JsonObject{
+			"object": JSONObject{
 				"in-object": "object",
 			},
 		}
