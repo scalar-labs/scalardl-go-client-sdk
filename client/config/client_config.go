@@ -9,45 +9,45 @@ import (
 )
 
 const (
-	LEDGER_SERVER_HOST                          string = "scalar.dl.client.server.host"
-	LEDGER_SERVER_PORT                          string = "scalar.dl.client.server.port"
-	LEDGER_SERVER_PRIVILEDGED_PORT              string = "scalar.dl.client.server.privileged_port"
-	CERT_PATH                                   string = "scalar.dl.client.cert_path"
-	CERT_PEM                                    string = "scalar.dl.client.cert_pem"
-	CERT_HOLDER_ID                              string = "scalar.dl.client.cert_holder_id"
-	CERT_VERSION                                string = "scalar.dl.client.cert_version"
-	PRIVATE_KEY_PATH                            string = "scalar.dl.client.private_key_path"
-	PRIVATE_KEY_PEM                             string = "scalar.dl.client.private_key_pem"
-	TLS_ENABLED                                 string = "scalar.dl.client.tls.enabled"
-	TLS_CA_ROOT_CERT_PATH                       string = "scalar.dl.client.tls.ca_root_cert_path"
-	TLS_CA_ROOT_CERT_PEM                        string = "scalar.dl.client.tls.ca_root_cert_pem"
-	AUTHORIZATION_CREDENTIAL                    string = "scalar.dl.client.authorization.credential"
-	CLIENT_MODE                                 string = "scalar.dl.client.mode"
-	PROXY_SERVER                                string = "scalar.dl.client.proxy.server"
-	AUDITOR_ENABLED                             string = "scalar.dl.client.auditor.enabled"
-	AUDITOR_SERVER_HOST                         string = "scalar.dl.client.auditor.host"
-	AUDITOR_SERVER_PORT                         string = "scalar.dl.client.auditor.port"
-	AUDITOR_SERVER_PRIVILEDGED_PORT             string = "scalar.dl.client.auditor.privileged_port"
-	AUDITOR_TLS_ENABLED                         string = "scalar.dl.client.auditor.tls.enabled"
-	AUDITOR_TLS_CA_ROOT_CERT_PATH               string = "scalar.dl.client.auditor.tls.ca_root_cert_path"
-	AUDITOR_TLS_CA_ROOT_CERT_PEM                string = "scalar.dl.client.auditor.tls.ca_root_cert_pem"
-	AUDITOR_LINEARIZABLE_VALIDATION_ENABLED     string = "scalar.dl.client.auditor.linearizable_validation.enabled"
-	AUDITOR_LINEARIZABLE_VALIDATION_CONTRACT_ID string = "scalar.dl.client.auditor.linearizable_validation.contract_id"
+	ledgerServerHost                        string = "scalar.dl.client.server.host"
+	ledgerServerPort                        string = "scalar.dl.client.server.port"
+	ledgerServerPriviledgedPort             string = "scalar.dl.client.server.privileged_port"
+	certPath                                string = "scalar.dl.client.cert_path"
+	certPem                                 string = "scalar.dl.client.cert_pem"
+	certHolderID                            string = "scalar.dl.client.cert_holder_id"
+	certVersion                             string = "scalar.dl.client.cert_version"
+	privateKeyPath                          string = "scalar.dl.client.private_key_path"
+	privateKeyPem                           string = "scalar.dl.client.private_key_pem"
+	tlsEnabled                              string = "scalar.dl.client.tls.enabled"
+	tlsCaRootCertPath                       string = "scalar.dl.client.tls.ca_root_cert_path"
+	tlsCaRootCertPem                        string = "scalar.dl.client.tls.ca_root_cert_pem"
+	authorizationCredential                 string = "scalar.dl.client.authorization.credential"
+	clientMode                              string = "scalar.dl.client.mode"
+	proxyServer                             string = "scalar.dl.client.proxy.server"
+	auditorEnabled                          string = "scalar.dl.client.auditor.enabled"
+	auditorServerHost                       string = "scalar.dl.client.auditor.host"
+	auditorServerPort                       string = "scalar.dl.client.auditor.port"
+	auditorServerPriviledgedPort            string = "scalar.dl.client.auditor.privileged_port"
+	auditorTLSEnabled                       string = "scalar.dl.client.auditor.tls.enabled"
+	auditorTLSCaRootCertPath                string = "scalar.dl.client.auditor.tls.ca_root_cert_path"
+	auditorTLSCaRootCertPem                 string = "scalar.dl.client.auditor.tls.ca_root_cert_pem"
+	auditorLinearizableValidationEnabled    string = "scalar.dl.client.auditor.linearizable_validation.enabled"
+	auditorLinearizableValidationContractID string = "scalar.dl.client.auditor.linearizable_validation.contract_id"
 )
 
 // ClientConfig defines the structure of the configurations that is used in ClientService.
 // We can use NewClientConfigFromJavaProperties to create it from Java Properties,
-// or use NewClientConfigFromJson to create it from JSON.
+// or use NewClientConfigFromJSON to create it from JSON.
 type ClientConfig struct {
 	LedgerHost                              string `validate:"required"`
 	LedgerPort                              uint16 `validate:"lt=65536"`
 	LedgerPrivilegedPort                    uint16 `validate:"lt=65536"`
-	CertHolderId                            string `validate:"required"`
+	CertHolderID                            string `validate:"required"`
 	CertVersion                             int
 	Cert                                    string `validate:"required"`
 	PrivateKey                              string `validate:"required"`
-	IsTlsEnabled                            bool
-	TlsCaRootCert                           string `validate:"required_if=IsTlsEnabled true"`
+	IsTLSEnabled                            bool
+	TLSCaRootCert                           string `validate:"required_if=IsTLSEnabled true"`
 	AuthorizationCredential                 string
 	ClientMode                              string `validate:"required,oneof=CLIENT INTERMEDIARY"`
 	ProxyServer                             string
@@ -55,10 +55,10 @@ type ClientConfig struct {
 	AuditorHost                             string `validate:"required_if=IsAuditorEnabled true"`
 	AuditorPort                             uint16 `validate:"lt=65536"`
 	AuditorPrivilegedPort                   uint16 `validate:"lt=65536"`
-	IsAuditorTlsEnabled                     bool
-	AuditorTlsCaRootCert                    string `validate:"required_if=IsAuditorTlsEnabled true"`
+	IsAuditorTLSEnabled                     bool
+	AuditorTLSCaRootCert                    string `validate:"required_if=IsAuditorTLSEnabled true"`
 	IsAuditorLinearizableValidationEnabled  bool
-	AuditorLinearizableValidationContractId string `validate:"required_if=IsAuditorLinearizableValidationEnabled true"`
+	AuditorLinearizableValidationContractID string `validate:"required_if=IsAuditorLinearizableValidationEnabled true"`
 }
 
 var validate *validator.Validate = validator.New()
@@ -74,15 +74,15 @@ func (c *ClientConfig) Validate() error {
 //		LedgerPort:                              50051,
 //		LedgerPrivilegedPort:                    50052,
 //		CertVersion:                             1,
-//		IsTlsEnabled:                            false,
+//		IsTLSEnabled:                            false,
 //		IsAuditorEnabled:                        false,
 //		ClientMode:                              "CLIENT",
 //		AuditorHost:                             "localhost",
 //		AuditorPort:                             40051,
 //		AuditorPrivilegedPort:                   40052,
-//		IsAuditorTlsEnabled:                     false,
+//		IsAuditorTLSEnabled:                     false,
 //		IsAuditorLinearizableValidationEnabled:  false,
-//		AuditorLinearizableValidationContractId: "validate-ledger",
+//		AuditorLinearizableValidationContractID: "validate-ledger",
 //	}
 func NewClientConfigWithDefaultValues() ClientConfig {
 	return ClientConfig{
@@ -90,15 +90,15 @@ func NewClientConfigWithDefaultValues() ClientConfig {
 		LedgerPort:                              50051,
 		LedgerPrivilegedPort:                    50052,
 		CertVersion:                             1,
-		IsTlsEnabled:                            false,
+		IsTLSEnabled:                            false,
 		IsAuditorEnabled:                        false,
 		ClientMode:                              "CLIENT",
 		AuditorHost:                             "localhost",
 		AuditorPort:                             40051,
 		AuditorPrivilegedPort:                   40052,
-		IsAuditorTlsEnabled:                     false,
+		IsAuditorTLSEnabled:                     false,
 		IsAuditorLinearizableValidationEnabled:  false,
-		AuditorLinearizableValidationContractId: "validate-ledger",
+		AuditorLinearizableValidationContractID: "validate-ledger",
 	}
 }
 
@@ -110,8 +110,8 @@ func NewClientConfigFromJavaProperties(javaProperties string) (ClientConfig, err
 	return readConfigByViper(v, javaProperties)
 }
 
-// NewClientConfigFromJson parses the given JSON string to create ClientConfig according to correspoinding properties.
-func NewClientConfigFromJson(json string) (ClientConfig, error) {
+// NewClientConfigFromJSON parses the given JSON string to create ClientConfig according to correspoinding properties.
+func NewClientConfigFromJSON(json string) (ClientConfig, error) {
 	var v *viper.Viper = viper.New()
 	v.SetConfigType("json")
 
@@ -125,98 +125,98 @@ func readConfigByViper(v *viper.Viper, configInString string) (clientConfig Clie
 
 	clientConfig = NewClientConfigWithDefaultValues()
 
-	if v.GetString(LEDGER_SERVER_HOST) != "" {
-		clientConfig.LedgerHost = v.GetString(LEDGER_SERVER_HOST)
+	if v.GetString(ledgerServerHost) != "" {
+		clientConfig.LedgerHost = v.GetString(ledgerServerHost)
 	}
 
-	if v.GetUint(LEDGER_SERVER_PORT) != 0 {
-		clientConfig.LedgerPort = uint16(v.GetUint(LEDGER_SERVER_PORT))
+	if v.GetUint(ledgerServerPort) != 0 {
+		clientConfig.LedgerPort = uint16(v.GetUint(ledgerServerPort))
 	}
 
-	if v.GetUint(LEDGER_SERVER_PRIVILEDGED_PORT) != 0 {
-		clientConfig.LedgerPrivilegedPort = uint16(v.GetUint(LEDGER_SERVER_PRIVILEDGED_PORT))
+	if v.GetUint(ledgerServerPriviledgedPort) != 0 {
+		clientConfig.LedgerPrivilegedPort = uint16(v.GetUint(ledgerServerPriviledgedPort))
 	}
 
-	var certPath string = v.GetString(CERT_PATH)
+	var certPath string = v.GetString(certPath)
 	if certBytes, err := ioutil.ReadFile(certPath); err == nil {
 		clientConfig.Cert = string(certBytes)
 	}
 
-	var certPem string = v.GetString(CERT_PEM)
+	var certPem string = v.GetString(certPem)
 	if certPem != "" {
 		clientConfig.Cert = certPem
 	}
 
-	clientConfig.CertHolderId = v.GetString(CERT_HOLDER_ID)
+	clientConfig.CertHolderID = v.GetString(certHolderID)
 
-	if v.GetInt(CERT_VERSION) != 0 {
-		clientConfig.CertVersion = v.GetInt(CERT_VERSION)
+	if v.GetInt(certVersion) != 0 {
+		clientConfig.CertVersion = v.GetInt(certVersion)
 	}
 
-	var privateKeyPath string = v.GetString(PRIVATE_KEY_PATH)
+	var privateKeyPath string = v.GetString(privateKeyPath)
 	if privateKeyBytes, err := ioutil.ReadFile(privateKeyPath); err == nil {
 		clientConfig.PrivateKey = string(privateKeyBytes)
 	}
 
-	var privateKeyPem string = v.GetString(PRIVATE_KEY_PEM)
+	var privateKeyPem string = v.GetString(privateKeyPem)
 	if privateKeyPem != "" {
 		clientConfig.PrivateKey = privateKeyPem
 	}
 
-	clientConfig.IsTlsEnabled = v.GetBool(TLS_ENABLED)
+	clientConfig.IsTLSEnabled = v.GetBool(tlsEnabled)
 
-	var tlsCaRootCertPath string = v.GetString(TLS_CA_ROOT_CERT_PATH)
-	if tlsCaRootCertBytes, err := ioutil.ReadFile(tlsCaRootCertPath); err == nil {
-		clientConfig.TlsCaRootCert = string(tlsCaRootCertBytes)
+	var path string = v.GetString(tlsCaRootCertPath)
+	if tlsCaRootCertBytes, err := ioutil.ReadFile(path); err == nil {
+		clientConfig.TLSCaRootCert = string(tlsCaRootCertBytes)
 	}
 
-	var tlsCaRootCertPem string = v.GetString(TLS_CA_ROOT_CERT_PEM)
+	var pem string = v.GetString(tlsCaRootCertPem)
 	if tlsCaRootCertPem != "" {
-		clientConfig.TlsCaRootCert = tlsCaRootCertPem
+		clientConfig.TLSCaRootCert = pem
 	}
 
-	if v.GetString(AUTHORIZATION_CREDENTIAL) != "" {
-		clientConfig.AuthorizationCredential = v.GetString(AUTHORIZATION_CREDENTIAL)
+	if v.GetString(authorizationCredential) != "" {
+		clientConfig.AuthorizationCredential = v.GetString(authorizationCredential)
 	}
 
-	if v.GetString(CLIENT_MODE) != "" {
-		clientConfig.ClientMode = v.GetString(CLIENT_MODE)
+	if v.GetString(clientMode) != "" {
+		clientConfig.ClientMode = v.GetString(clientMode)
 	}
 
-	if v.GetString(PROXY_SERVER) != "" {
-		clientConfig.ProxyServer = v.GetString(PROXY_SERVER)
+	if v.GetString(proxyServer) != "" {
+		clientConfig.ProxyServer = v.GetString(proxyServer)
 	}
 
-	clientConfig.IsAuditorEnabled = v.GetBool(AUDITOR_ENABLED)
+	clientConfig.IsAuditorEnabled = v.GetBool(auditorEnabled)
 
-	if v.GetString(AUDITOR_SERVER_HOST) != "" {
-		clientConfig.AuditorHost = v.GetString(AUDITOR_SERVER_HOST)
+	if v.GetString(auditorServerHost) != "" {
+		clientConfig.AuditorHost = v.GetString(auditorServerHost)
 	}
 
-	if v.GetUint(AUDITOR_SERVER_PORT) != 0 {
-		clientConfig.AuditorPort = uint16(v.GetUint(AUDITOR_SERVER_PORT))
+	if v.GetUint(auditorServerPort) != 0 {
+		clientConfig.AuditorPort = uint16(v.GetUint(auditorServerPort))
 	}
 
-	if v.GetUint(AUDITOR_SERVER_PRIVILEDGED_PORT) != 0 {
-		clientConfig.AuditorPrivilegedPort = uint16(v.GetUint(AUDITOR_SERVER_PRIVILEDGED_PORT))
+	if v.GetUint(auditorServerPriviledgedPort) != 0 {
+		clientConfig.AuditorPrivilegedPort = uint16(v.GetUint(auditorServerPriviledgedPort))
 	}
 
-	clientConfig.IsAuditorTlsEnabled = v.GetBool(AUDITOR_TLS_ENABLED)
+	clientConfig.IsAuditorTLSEnabled = v.GetBool(auditorTLSEnabled)
 
-	var auditorTlsCaRootCertPath string = v.GetString(AUDITOR_TLS_CA_ROOT_CERT_PATH)
-	if auditorTlsCaRootCertBytes, err := ioutil.ReadFile(auditorTlsCaRootCertPath); err == nil {
-		clientConfig.AuditorTlsCaRootCert = string(auditorTlsCaRootCertBytes)
+	path = v.GetString(auditorTLSCaRootCertPath)
+	if auditorTLSCaRootCertBytes, err := ioutil.ReadFile(path); err == nil {
+		clientConfig.AuditorTLSCaRootCert = string(auditorTLSCaRootCertBytes)
 	}
 
-	var auditorTlsCaRootCertPem string = v.GetString(AUDITOR_TLS_CA_ROOT_CERT_PEM)
-	if auditorTlsCaRootCertPem != "" {
-		clientConfig.AuditorTlsCaRootCert = auditorTlsCaRootCertPem
+	pem = v.GetString(auditorTLSCaRootCertPem)
+	if pem != "" {
+		clientConfig.AuditorTLSCaRootCert = pem
 	}
 
 	if clientConfig.IsAuditorEnabled {
-		clientConfig.IsAuditorLinearizableValidationEnabled = v.GetBool(AUDITOR_LINEARIZABLE_VALIDATION_ENABLED)
-		if v.GetString(AUDITOR_LINEARIZABLE_VALIDATION_CONTRACT_ID) != "" {
-			clientConfig.AuditorLinearizableValidationContractId = v.GetString(AUDITOR_LINEARIZABLE_VALIDATION_CONTRACT_ID)
+		clientConfig.IsAuditorLinearizableValidationEnabled = v.GetBool(auditorLinearizableValidationEnabled)
+		if v.GetString(auditorLinearizableValidationContractID) != "" {
+			clientConfig.AuditorLinearizableValidationContractID = v.GetString(auditorLinearizableValidationContractID)
 		}
 	}
 
