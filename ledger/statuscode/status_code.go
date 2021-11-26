@@ -1,4 +1,4 @@
-package status_code
+package statuscode
 
 // StatusCode hints at what happened after a gRPC request is handled.
 type StatusCode int
@@ -7,78 +7,78 @@ const (
 	// OK indicates that the registration/execution request has succeeded.
 	OK = 200
 
-	// INVALID_HASH indicates that the existing hash value of an asset record is different from the expected value.
-	INVALID_HASH = 300
+	// InvalidHash indicates that the existing hash value of an asset record is different from the expected value.
+	InvalidHash = 300
 
-	// INVALID_PREV_HASH indicates that the existing prev_hash value of an asset record is different from the expected value.
-	INVALID_PREV_HASH = 301
+	// InvalidPrevHash indicates that the existing prev_hash value of an asset record is different from the expected value.
+	InvalidPrevHash = 301
 
-	// INVALID_CONTRACT indicates that some previously executed contract produced an asset record which could not be validated.
-	INVALID_CONTRACT = 302
+	// InvalidContract indicates that some previously executed contract produced an asset record which could not be validated.
+	InvalidContract = 302
 
-	// INVALID_OUTPUT indicates that the existing data value of an asset record is different from the expected value.
-	INVALID_OUTPUT = 303
+	// InvalidOutput indicates that the existing data value of an asset record is different from the expected value.
+	InvalidOutput = 303
 
-	// INVALID_NONCE indicates that the same nonce value has been used more than once.
-	INVALID_NONCE = 304
+	// InvalidNonce indicates that the same nonce value has been used more than once.
+	InvalidNonce = 304
 
-	// INCONSISTENT_STATES indicates that the ledger states between multiple organizations are inconsistent.
-	INCONSISTENT_STATES = 305
+	// InconsistentStates indicates that the ledger states between multiple organizations are inconsistent.
+	InconsistentStates = 305
 
-	// INCONSISTENT_REQUEST indicates that a request is inconsistent and could be maliciously tampered.
-	INCONSISTENT_REQUEST = 306
+	// InconsistentRequest indicates that a request is inconsistent and could be maliciously tampered.
+	InconsistentRequest = 306
 
-	// INVALID_SIGNATURE indicates that the given signature is invalid or a signature can not be created for some reason.
-	INVALID_SIGNATURE = 400
+	// InvalidSignature indicates that the given signature is invalid or a signature can not be created for some reason.
+	InvalidSignature = 400
 
-	// UNLOADABLE_KEY indicates that the given key could not be loaded for some reason, e.g. it is invalid.
-	UNLOADABLE_KEY = 401
+	// UnloadableKey indicates that the given key could not be loaded for some reason, e.g. it is invalid.
+	UnloadableKey = 401
 
-	// UNLOADABLE_CONTRACT indicates that the given contract could not be loaded for some reason, e.g., instantiation failure.
-	UNLOADABLE_CONTRACT = 402
+	// UnloadableContract indicates that the given contract could not be loaded for some reason, e.g., instantiation failure.
+	UnloadableContract = 402
 
-	// CERTIFICATE_NOT_FOUND indicates that the given certificate is not found.
-	CERTIFICATE_NOT_FOUND = 403
+	// CertificateNotFound indicates that the given certificate is not found.
+	CertificateNotFound = 403
 
-	// CONTRACT_NOT_FOUND indicates that the given contract is not found.
-	CONTRACT_NOT_FOUND = 404
+	// ContractNotFound indicates that the given contract is not found.
+	ContractNotFound = 404
 
-	// CERTIFICATE_ALREADY_REGISTERED indicates that the given certificate is already registered.
-	CERTIFICATE_ALREADY_REGISTERED = 405
+	// CertificateAlreadyRegistered indicates that the given certificate is already registered.
+	CertificateAlreadyRegistered = 405
 
-	// CONTRACT_ALREADY_REGISTERED indicates that the given contract is already registered.
-	CONTRACT_ALREADY_REGISTERED = 406
+	// ContractAlreadyRegistered indicates that the given contract is already registered.
+	ContractAlreadyRegistered = 406
 
-	// INVALID_REQUEST indicates that the request is invalid.
-	INVALID_REQUEST = 407
+	// InvalidRequest indicates that the request is invalid.
+	InvalidRequest = 407
 
-	// CONTRACT_CONTEXTUAL_ERROR indicates that the contract has a contextual error that is not recoverable by the ledger.
-	CONTRACT_CONTEXTUAL_ERROR = 408
+	// ContractContextualError indicates that the contract has a contextual error that is not recoverable by the ledger.
+	ContractContextualError = 408
 
-	// ASSET_NOT_FOUND indicates that the specified asset is not found.
-	ASSET_NOT_FOUND = 409
+	// AssetNotFound indicates that the specified asset is not found.
+	AssetNotFound = 409
 
-	// FUNCTION_NOT_FOUND indicates that the given function is not found.
-	FUNCTION_NOT_FOUND = 410
+	// FunctionNotFound indicates that the given function is not found.
+	FunctionNotFound = 410
 
-	// UNLOADABLE_FUNCTION indicates that the given function could not be loaded for some reason.
-	UNLOADABLE_FUNCTION = 411
+	// UnloadableFunction indicates that the given function could not be loaded for some reason.
+	UnloadableFunction = 411
 
-	// INVALID_FUNCTION indicates that the given function is invalid.
-	INVALID_FUNCTION = 412
+	// InvalidFunction indicates that the given function is invalid.
+	InvalidFunction = 412
 
-	// DATABASE_ERROR indicates that the system encountered a database error such as IO error.
-	DATABASE_ERROR = 500
+	// DatabaseError indicates that the system encountered a database error such as IO error.
+	DatabaseError = 500
 
-	// UNKNOWN_TRANSACTION_STATUS indicates that the system encountered a unknown transaction status.
-	UNKNOWN_TRANSACTION_STATUS = 501
+	// UnknownTransactionStatus indicates that the system encountered a unknown transaction status.
+	UnknownTransactionStatus = 501
 
-	// RUNTIME_ERROR indicates that the system encountered a runtime error.
-	RUNTIME_ERROR = 502
+	// RuntimeError indicates that the system encountered a runtime error.
+	RuntimeError = 502
 
-	// UNAVAILABLE indicates that the system is temporarily unavailable.
-	UNAVAILABLE = 503
+	// Unavailable indicates that the system is temporarily unavailable.
+	Unavailable = 503
 
-	// CONFLICT indicates that the system encountered conflicting transactions.
-	CONFLICT = 504
+	// Conflict indicates that the system encountered conflicting transactions.
+	Conflict = 504
 )
