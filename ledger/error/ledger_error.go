@@ -2,6 +2,8 @@ package error
 
 import "github.com/scalar-labs/dl/ledger/statuscode"
 
+// LedgerError represents the errors fromo Ledger.
+// It implements the Error interface.
 type LedgerError struct {
 	message    string
 	statusCode statuscode.StatusCode
