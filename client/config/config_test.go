@@ -8,7 +8,7 @@ func Test_NewClientConfigFromJson_WithEmptyObject_ShouldGetDefaultClientConfig(t
 	var c ClientConfig
 	var err error
 
-	if c, err = NewClientConfigFromJson("{}"); err != nil {
+	if c, err = NewClientConfigFromJSON("{}"); err != nil {
 		t.Errorf("should be able to create default ClientConfig")
 	}
 
@@ -58,8 +58,8 @@ scalar.dl.client.auditor.linearizable_validation.contract_id=linearizable
 		t.Errorf("LedgerPrivilegedPort is not match")
 	}
 
-	if c.CertHolderId != "foo" {
-		t.Errorf("CertHolderId is not match")
+	if c.CertHolderID != "foo" {
+		t.Errorf("CertHolderID is not match")
 	}
 
 	if c.CertVersion != 100 {
@@ -74,12 +74,12 @@ scalar.dl.client.auditor.linearizable_validation.contract_id=linearizable
 		t.Errorf("PrivateKey is not match")
 	}
 
-	if !c.IsTlsEnabled {
-		t.Errorf("IsTlsEnabled is not match")
+	if !c.IsTLSEnabled {
+		t.Errorf("IsTLSEnabled is not match")
 	}
 
-	if c.TlsCaRootCert != "ca_root_cert_pem" {
-		t.Errorf("TlsCaRootCert is not match")
+	if c.TLSCaRootCert != "ca_root_cert_pem" {
+		t.Errorf("TLSCaRootCert is not match")
 	}
 
 	if c.AuthorizationCredential != "credential" {
@@ -114,8 +114,8 @@ scalar.dl.client.auditor.linearizable_validation.contract_id=linearizable
 		t.Errorf("IsAuditorLinearizableValidationEnabled is not match")
 	}
 
-	if c.AuditorLinearizableValidationContractId != "linearizable" {
-		t.Errorf("AuditorLinearizableValidationContractId is not match")
+	if c.AuditorLinearizableValidationContractID != "linearizable" {
+		t.Errorf("AuditorLinearizableValidationContractID is not match")
 	}
 }
 
@@ -145,7 +145,7 @@ func Test_NewClientConfigFromJson_WithCorrectObject_ShouldGetCorrectClientConfig
 	var c ClientConfig
 	var err error
 
-	if c, err = NewClientConfigFromJson(json); err != nil {
+	if c, err = NewClientConfigFromJSON(json); err != nil {
 		t.Errorf("can't load JSON %s", json)
 	}
 
@@ -161,7 +161,7 @@ func Test_NewClientConfigFromJson_WithCorrectObject_ShouldGetCorrectClientConfig
 		t.Errorf("LedgerPrivilegedPort is not match")
 	}
 
-	if c.CertHolderId != "foo" {
+	if c.CertHolderID != "foo" {
 		t.Errorf("CertHolderId is not match")
 	}
 
@@ -177,12 +177,12 @@ func Test_NewClientConfigFromJson_WithCorrectObject_ShouldGetCorrectClientConfig
 		t.Errorf("PrivateKey is not match")
 	}
 
-	if !c.IsTlsEnabled {
-		t.Errorf("IsTlsEnabled is not match")
+	if !c.IsTLSEnabled {
+		t.Errorf("IsTLSEnabled is not match")
 	}
 
-	if c.TlsCaRootCert != "ca_root_cert_pem" {
-		t.Errorf("TlsCaRootCert is not match")
+	if c.TLSCaRootCert != "ca_root_cert_pem" {
+		t.Errorf("TLSCaRootCert is not match")
 	}
 
 	if c.AuthorizationCredential != "credential" {
@@ -217,8 +217,8 @@ func Test_NewClientConfigFromJson_WithCorrectObject_ShouldGetCorrectClientConfig
 		t.Errorf("IsAuditorLinearizableValidationEnabled is not match")
 	}
 
-	if c.AuditorLinearizableValidationContractId != "linearizable" {
-		t.Errorf("AuditorLinearizableValidationContractId is not match")
+	if c.AuditorLinearizableValidationContractID != "linearizable" {
+		t.Errorf("AuditorLinearizableValidationContractID is not match")
 	}
 }
 
@@ -226,15 +226,15 @@ func Test_NewClientConfigFromJson_WithInvalidJson_ShouldNotBeValidated(t *testin
 	var c ClientConfig
 	var err error
 
-	var withoutCertHolderId = `
+	var withoutCertHolderID = `
 {
 	"scalar.dl.client.cert_pem": "cert_pem",
 	"scalar.dl.client.private_key_pem": "private_key_pem"
 }
 `
 
-	if c, err = NewClientConfigFromJson(withoutCertHolderId); err != nil {
-		t.Errorf("can't load JSON %s", withoutCertHolderId)
+	if c, err = NewClientConfigFromJSON(withoutCertHolderID); err != nil {
+		t.Errorf("can't load JSON %s", withoutCertHolderID)
 	}
 
 	if err = c.Validate(); err == nil {
@@ -248,7 +248,7 @@ func Test_NewClientConfigFromJson_WithInvalidJson_ShouldNotBeValidated(t *testin
 }
 `
 
-	if c, err = NewClientConfigFromJson(withoutCertPem); err != nil {
+	if c, err = NewClientConfigFromJSON(withoutCertPem); err != nil {
 		t.Errorf("can't load JSON %s", withoutCertPem)
 	}
 
@@ -263,7 +263,7 @@ func Test_NewClientConfigFromJson_WithInvalidJson_ShouldNotBeValidated(t *testin
 }
 `
 
-	if c, err = NewClientConfigFromJson(withoutPrivateKeyPem); err != nil {
+	if c, err = NewClientConfigFromJSON(withoutPrivateKeyPem); err != nil {
 		t.Errorf("can't load JSON %s", withoutPrivateKeyPem)
 	}
 
@@ -271,7 +271,7 @@ func Test_NewClientConfigFromJson_WithInvalidJson_ShouldNotBeValidated(t *testin
 		t.Errorf("should not be validated without PrivateKey")
 	}
 
-	var withoutTlsCaRootCert = `
+	var withoutTLSCaRootCert = `
 {
 	"scalar.dl.client.cert_holder_id": "foo",
 	"scalar.dl.client.cert_pem": "cert_pem",
@@ -280,12 +280,12 @@ func Test_NewClientConfigFromJson_WithInvalidJson_ShouldNotBeValidated(t *testin
 }
 `
 
-	if c, err = NewClientConfigFromJson(withoutTlsCaRootCert); err != nil {
-		t.Errorf("can't load JSON %s", withoutTlsCaRootCert)
+	if c, err = NewClientConfigFromJSON(withoutTLSCaRootCert); err != nil {
+		t.Errorf("can't load JSON %s", withoutTLSCaRootCert)
 	}
 
 	if err = c.Validate(); err == nil {
-		t.Errorf("should not be validated without TlsCaRootCert")
+		t.Errorf("should not be validated without TLSCaRootCert")
 	}
 
 	var withInvalidClientMode = `
@@ -297,7 +297,7 @@ func Test_NewClientConfigFromJson_WithInvalidJson_ShouldNotBeValidated(t *testin
 }
 `
 
-	if c, err = NewClientConfigFromJson(withInvalidClientMode); err != nil {
+	if c, err = NewClientConfigFromJSON(withInvalidClientMode); err != nil {
 		t.Errorf("can't load JSON %s", withInvalidClientMode)
 	}
 
@@ -305,7 +305,7 @@ func Test_NewClientConfigFromJson_WithInvalidJson_ShouldNotBeValidated(t *testin
 		t.Errorf("should not be validated with invalid ClientMode")
 	}
 
-	var withoutAuditorTlsCaRootCert = `
+	var withoutAuditorTLSCaRootCert = `
 {
 	"scalar.dl.client.cert_holder_id": "foo",
 	"scalar.dl.client.cert_pem": "cert_pem",
@@ -314,11 +314,11 @@ func Test_NewClientConfigFromJson_WithInvalidJson_ShouldNotBeValidated(t *testin
 }
 `
 
-	if c, err = NewClientConfigFromJson(withoutAuditorTlsCaRootCert); err != nil {
-		t.Errorf("can't load JSON %s", withoutAuditorTlsCaRootCert)
+	if c, err = NewClientConfigFromJSON(withoutAuditorTLSCaRootCert); err != nil {
+		t.Errorf("can't load JSON %s", withoutAuditorTLSCaRootCert)
 	}
 
 	if err = c.Validate(); err == nil {
-		t.Errorf("should not be validated without AuditorTlsCaRootCert")
+		t.Errorf("should not be validated without AuditorTLSCaRootCert")
 	}
 }
