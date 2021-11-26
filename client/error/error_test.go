@@ -3,7 +3,7 @@ package error
 import (
 	"testing"
 
-	"github.com/scalar-labs/dl/ledger/status_code"
+	"github.com/scalar-labs/dl/ledger/statuscode"
 )
 
 func Test_NewClientError_StatusCodeAndMessage_ShouldBeSuccessful(t *testing.T) {
@@ -12,7 +12,7 @@ func Test_NewClientError_StatusCodeAndMessage_ShouldBeSuccessful(t *testing.T) {
 		message:    "error message",
 	}
 
-	if err.StatusCode() != status_code.UNLOADABLE_KEY {
+	if err.StatusCode() != statuscode.UnloadableKey {
 		t.Errorf("should be created with correct status code")
 	}
 

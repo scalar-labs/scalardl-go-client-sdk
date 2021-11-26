@@ -1,16 +1,16 @@
 package error
 
-import "github.com/scalar-labs/dl/ledger/status_code"
+import "github.com/scalar-labs/dl/ledger/statuscode"
 
 // ClientError is used when ClientService has errors.
 // It implements the Error interface.
 type ClientError struct {
 	message    string
-	statusCode status_code.StatusCode
+	statusCode statuscode.StatusCode
 }
 
 // NewClientError creates the client error instance.
-func NewClientError(statusCode status_code.StatusCode, message string) ClientError {
+func NewClientError(statusCode statuscode.StatusCode, message string) ClientError {
 	return ClientError{
 		message:    message,
 		statusCode: statusCode,
@@ -23,6 +23,6 @@ func (e ClientError) Error() string {
 }
 
 // StatusCode returns the status code that represents the type of errors.
-func (e ClientError) StatusCode() status_code.StatusCode {
+func (e ClientError) StatusCode() statuscode.StatusCode {
 	return e.statusCode
 }
