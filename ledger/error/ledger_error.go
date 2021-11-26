@@ -1,14 +1,14 @@
 package error
 
-import "github.com/scalar-labs/dl/ledger/status_code"
+import "github.com/scalar-labs/dl/ledger/statuscode"
 
 type LedgerError struct {
 	message    string
-	statusCode status_code.StatusCode
+	statusCode statuscode.StatusCode
 }
 
 // NewLedgerError creates the ledger error instance.
-func NewLedgerError(statusCode status_code.StatusCode, message string) LedgerError {
+func NewLedgerError(statusCode statuscode.StatusCode, message string) LedgerError {
 	return LedgerError{
 		message:    message,
 		statusCode: statusCode,
@@ -21,6 +21,6 @@ func (e LedgerError) Error() string {
 }
 
 // StatusCode returns the status code that represents the type of errors.
-func (e LedgerError) StatusCode() status_code.StatusCode {
+func (e LedgerError) StatusCode() statuscode.StatusCode {
 	return e.statusCode
 }
