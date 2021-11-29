@@ -41,7 +41,7 @@ type EcdsaSha256Verifier struct {
 	certificate *x509.Certificate
 }
 
-// NewEcdsaSha256Signer parses given certificate and creates EcdsaSha256Verifier.
+// NewEcdsaSha256Verifier parses given certificate and creates EcdsaSha256Verifier.
 func NewEcdsaSha256Verifier(certificate []byte) (v EcdsaSha256Verifier, err error) {
 	var block *pem.Block
 	block, _ = pem.Decode(certificate)
