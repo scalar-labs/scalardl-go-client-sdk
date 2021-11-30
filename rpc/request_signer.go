@@ -116,6 +116,7 @@ func (r *AssetProofRetrievalRequest) SignWith(signer crypto.Signer) (err error) 
 	return
 }
 
+// SignWith signs ExecutionAbortRequest with the given signer and fill the signature.
 func (r *ExecutionAbortRequest) SignWith(signer crypto.Signer) (err error) {
 	var certVersionBytes []byte = make([]byte, unsafe.Sizeof(r.GetCertVersion()))
 	binary.BigEndian.PutUint32(certVersionBytes, r.GetCertVersion())
