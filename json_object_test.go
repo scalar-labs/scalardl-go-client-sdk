@@ -62,3 +62,33 @@ func Test_String_ShouldReturnCorrectJSON(t *testing.T) {
 		t.Errorf("should return correct JSON")
 	}
 }
+
+func Test_FromJSON_WithCorrectJSON_ShouldReturnCorrectJSONObject(t *testing.T) {
+	var (
+		object JSONObject
+		err    error
+	)
+
+	if object, err = FromJSON(`{"foo":"bar"}`); err != nil {
+		t.Errorf("should be able to parse JSON")
+	}
+
+	if object["foo"] != "bar" {
+		t.Errorf("should return corect JSONObject")
+	}
+}
+
+func Test_FromJSON_WithIncorrectJSON_ShouldNotReturnCorrectJSONObject(t *testing.T) {
+	var (
+		object JSONObject
+		err    error
+	)
+
+	if object, err = FromJSON(``); err == nil {
+		t.Errorf("should NOT be able to parse JSON")
+	}
+
+	if object != nil {
+		t.Errorf("should be a nil JSONObject")
+	}
+}
