@@ -88,8 +88,8 @@ func Test_FromJSON_WithIncorrectJSON_ShouldNotReturnCorrectJSONObject(t *testing
 		t.Errorf("should NOT be able to parse JSON")
 	}
 
-	if object != nil {
-		t.Errorf("should be a nil JSONObject")
+	if !object.Equal(JSONObject{}) {
+		t.Errorf("should be an empty JSONObject")
 	}
 }
 

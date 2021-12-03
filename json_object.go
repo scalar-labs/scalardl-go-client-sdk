@@ -28,7 +28,10 @@ func (j JSONObject) String() (s string) {
 
 // FromJSON creates JSONObject from JSON.
 func FromJSON(s string) (o JSONObject, err error) {
-	err = json.Unmarshal([]byte(s), &o)
+	if err = json.Unmarshal([]byte(s), &o); err != nil {
+		o = JSONObject{}
+	}
+
 	return
 }
 
