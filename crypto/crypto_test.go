@@ -2,13 +2,11 @@ package crypto
 
 import "testing"
 
-func Test_NewEcSha256Signer_WithIncorrectKey_ShouldGetError(t *testing.T) {
+func Test_NewEcdsaSha256Signer(t *testing.T) {
 	if _, err := NewEcdsaSha256Signer([]byte("not a key")); err == nil {
 		t.Errorf("should get an error")
 	}
-}
 
-func Test_NewEcSha256Signer_WithCorrectKey_ShouldGetInstance(t *testing.T) {
 	var key string = `-----BEGIN EC PRIVATE KEY-----
 MHcCAQEEICcJGMEw3dyXUGFu/5a36HqY0ynZi9gLUfKgYWMYgr/IoAoGCCqGSM49
 AwEHoUQDQgAEBGuhqumyh7BVNqcNKAQQipDGooUpURve2dO66pQCgjtSfu7lJV20
@@ -21,7 +19,37 @@ XYWdrgo0Y3eXEhvK0lsURO9N0nrPiQWT4A==
 	}
 }
 
-func Test_EcSha256Signer_WithCorrectKey_ShouldSignCorrectly(t *testing.T) {
+func Test_EcdsaSha256Signer_Sign(t *testing.T) {
+	var (
+		privateKey string = `-----BEGIN EC PRIVATE KEY-----
+MHcCAQEEICcJGMEw3dyXUGFu/5a36HqY0ynZi9gLUfKgYWMYgr/IoAoGCCqGSM49
+AwEHoUQDQgAEBGuhqumyh7BVNqcNKAQQipDGooUpURve2dO66pQCgjtSfu7lJV20
+XYWdrgo0Y3eXEhvK0lsURO9N0nrPiQWT4A==
+-----END EC PRIVATE KEY-----
+`
+		s         Signer
+		err       error
+		signature []byte
+	)
+
+	if s, err = NewEcdsaSha256Signer([]byte(privateKey)); err != nil {
+		t.Errorf("should get an correct signer instance")
+	}
+
+	if signature, err = s.Sign([]byte("hello world!")); err != nil {
+		t.Errorf("should be able to sign")
+	}
+
+	if len(signature) < 2 || len(signature) < (int(signature[1])-2) {
+		t.Errorf("signature is in an incorrect length")
+	}
+
+	if int(signature[0]) != 48 {
+		t.Errorf("signature has an incorrect first-byte")
+	}
+}
+
+func Test_EcdsaSha256Signer_Verify(t *testing.T) {
 	var (
 		privateKey string = `-----BEGIN EC PRIVATE KEY-----
 MHcCAQEEICcJGMEw3dyXUGFu/5a36HqY0ynZi9gLUfKgYWMYgr/IoAoGCCqGSM49

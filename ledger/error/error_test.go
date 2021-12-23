@@ -6,11 +6,8 @@ import (
 	"github.com/scalar-labs/dl/ledger/statuscode"
 )
 
-func Test_NewClientError_StatusCodeAndMessage_ShouldBeSuccessful(t *testing.T) {
-	var err LedgerError = LedgerError{
-		statusCode: 400,
-		message:    "invalid signature",
-	}
+func Test_NewLedgerError(t *testing.T) {
+	var err LedgerError = NewLedgerError(400, "invalid signature")
 
 	if err.StatusCode() != statuscode.InvalidSignature {
 		t.Errorf("should be created with correct status code")
