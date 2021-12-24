@@ -34,17 +34,14 @@ func (r ContractExecutionResult) Equal(another ContractExecutionResult) (equal b
 		return false
 	}
 
-	var (
-		myProofs           []asset.Proof          = r.Proofs
-		anotherProofsInMap map[string]asset.Proof = make(map[string]asset.Proof)
-	)
+	var anotherProofsInMap map[string]asset.Proof = make(map[string]asset.Proof)
 
 	for _, p := range another.Proofs {
 		key := fmt.Sprintf("%s-%d", p.ID, p.Age)
 		anotherProofsInMap[key] = p
 	}
 
-	for _, p := range myProofs {
+	for _, p := range r.Proofs {
 		key := fmt.Sprintf("%s-%d", p.ID, p.Age)
 		a, ok := anotherProofsInMap[key]
 
@@ -57,17 +54,14 @@ func (r ContractExecutionResult) Equal(another ContractExecutionResult) (equal b
 		return false
 	}
 
-	var (
-		myAuditorProofs           []asset.Proof          = r.AuditorProofs
-		anotherAuditorProofsInMap map[string]asset.Proof = make(map[string]asset.Proof)
-	)
+	var anotherAuditorProofsInMap map[string]asset.Proof = make(map[string]asset.Proof)
 
 	for _, p := range another.AuditorProofs {
 		key := fmt.Sprintf("%s-%d", p.ID, p.Age)
 		anotherAuditorProofsInMap[key] = p
 	}
 
-	for _, p := range myAuditorProofs {
+	for _, p := range r.AuditorProofs {
 		key := fmt.Sprintf("%s-%d", p.ID, p.Age)
 		a, ok := anotherAuditorProofsInMap[key]
 
