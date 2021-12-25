@@ -41,11 +41,11 @@ func (r ContractExecutionResult) Equal(another ContractExecutionResult) (equal b
 		anotherProofsInMap[key] = p
 	}
 
-	for _, p := range r.Proofs {
-		key := fmt.Sprintf("%s-%d", p.ID, p.Age)
-		a, ok := anotherProofsInMap[key]
+	for _, p1 := range r.Proofs {
+		key := fmt.Sprintf("%s-%d", p1.ID, p1.Age)
+		p2, found := anotherProofsInMap[key]
 
-		if !ok || !p.Equal(a) {
+		if !found || !p1.Equal(p2) {
 			return false
 		}
 	}
@@ -61,11 +61,11 @@ func (r ContractExecutionResult) Equal(another ContractExecutionResult) (equal b
 		anotherAuditorProofsInMap[key] = p
 	}
 
-	for _, p := range r.AuditorProofs {
-		key := fmt.Sprintf("%s-%d", p.ID, p.Age)
-		a, ok := anotherAuditorProofsInMap[key]
+	for _, p1 := range r.AuditorProofs {
+		key := fmt.Sprintf("%s-%d", p1.ID, p1.Age)
+		p2, found := anotherAuditorProofsInMap[key]
 
-		if !ok || !p.Equal(a) {
+		if !found || !p1.Equal(p2) {
 			return false
 		}
 	}
