@@ -1,6 +1,8 @@
 package model
 
 import (
+	"fmt"
+
 	"github.com/scalar-labs/dl"
 	"github.com/scalar-labs/dl/ledger/asset"
 )
@@ -28,32 +30,42 @@ func (r ContractExecutionResult) Equal(another ContractExecutionResult) (equal b
 		return false
 	}
 
-	var (
-		myProofs      []asset.Proof = r.Proofs
-		anotherProofs []asset.Proof = another.Proofs
-	)
-
-	if len(myProofs) != len(anotherProofs) {
+	if len(r.Proofs) != len(another.Proofs) {
 		return false
 	}
 
-	for i := range myProofs {
-		if !myProofs[i].Equal(anotherProofs[i]) {
+	var anotherProofsInMap map[string]asset.Proof = make(map[string]asset.Proof)
+
+	for _, p := range another.Proofs {
+		key := fmt.Sprintf("%s-%d", p.ID, p.Age)
+		anotherProofsInMap[key] = p
+	}
+
+	for _, p1 := range r.Proofs {
+		key := fmt.Sprintf("%s-%d", p1.ID, p1.Age)
+		p2, found := anotherProofsInMap[key]
+
+		if !found || !p1.Equal(p2) {
 			return false
 		}
 	}
 
-	var (
-		myAuditorProofs      []asset.Proof = r.AuditorProofs
-		anotherAuditorProofs []asset.Proof = another.AuditorProofs
-	)
-
-	if len(myAuditorProofs) != len(anotherAuditorProofs) {
+	if len(r.AuditorProofs) != len(another.AuditorProofs) {
 		return false
 	}
 
-	for i := range myAuditorProofs {
-		if !myAuditorProofs[i].Equal(anotherAuditorProofs[i]) {
+	var anotherAuditorProofsInMap map[string]asset.Proof = make(map[string]asset.Proof)
+
+	for _, p := range another.AuditorProofs {
+		key := fmt.Sprintf("%s-%d", p.ID, p.Age)
+		anotherAuditorProofsInMap[key] = p
+	}
+
+	for _, p1 := range r.AuditorProofs {
+		key := fmt.Sprintf("%s-%d", p1.ID, p1.Age)
+		p2, found := anotherAuditorProofsInMap[key]
+
+		if !found || !p1.Equal(p2) {
 			return false
 		}
 	}
