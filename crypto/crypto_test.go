@@ -2,7 +2,7 @@ package crypto
 
 import "testing"
 
-func Test_NewEcdsaSha256Signer(t *testing.T) {
+func TestNewEcdsaSha256Signer(t *testing.T) {
 	if _, err := NewEcdsaSha256Signer([]byte("not a key")); err == nil {
 		t.Errorf("should get an error")
 	}
@@ -19,7 +19,7 @@ XYWdrgo0Y3eXEhvK0lsURO9N0nrPiQWT4A==
 	}
 }
 
-func Test_EcdsaSha256Signer_Sign(t *testing.T) {
+func TestEcdsaSha256Signer_Sign(t *testing.T) {
 	var (
 		privateKey string = `-----BEGIN EC PRIVATE KEY-----
 MHcCAQEEICcJGMEw3dyXUGFu/5a36HqY0ynZi9gLUfKgYWMYgr/IoAoGCCqGSM49
@@ -49,7 +49,7 @@ XYWdrgo0Y3eXEhvK0lsURO9N0nrPiQWT4A==
 	}
 }
 
-func Test_EcdsaSha256Signer_Verify(t *testing.T) {
+func TestEcdsaSha256Signer_Verify(t *testing.T) {
 	var (
 		privateKey string = `-----BEGIN EC PRIVATE KEY-----
 MHcCAQEEICcJGMEw3dyXUGFu/5a36HqY0ynZi9gLUfKgYWMYgr/IoAoGCCqGSM49

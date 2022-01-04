@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func Test_JSONObject_Equal(t *testing.T) {
+func TestJSONObject_Equal(t *testing.T) {
 	var shouldBeEquivalent bool = JSONObject{
 		"object": JSONObject{
 			"number": 1.23,
@@ -38,7 +38,7 @@ func Test_JSONObject_Equal(t *testing.T) {
 	}
 }
 
-func Test_JSONObject_String(t *testing.T) {
+func TestJSONObject_String(t *testing.T) {
 	var (
 		object = JSONObject{
 			"string": "i-am-string",
@@ -60,7 +60,7 @@ func Test_JSONObject_String(t *testing.T) {
 	}
 }
 
-func Test_FromJSON(t *testing.T) {
+func TestFromJSON(t *testing.T) {
 	var (
 		object JSONObject
 		err    error
@@ -83,7 +83,7 @@ func Test_FromJSON(t *testing.T) {
 	}
 }
 
-func Test_JSONObject_WithNonce(t *testing.T) {
+func TestJSONObject_WithNonce(t *testing.T) {
 	var (
 		object JSONObject = JSONObject{}
 	)

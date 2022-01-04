@@ -6,7 +6,7 @@ import (
 	"github.com/scalar-labs/dl/ledger/statuscode"
 )
 
-func Test_NewLedgerError(t *testing.T) {
+func TestNewLedgerError(t *testing.T) {
 	var err LedgerError = NewLedgerError(400, "invalid signature")
 
 	if err.StatusCode() != statuscode.InvalidSignature {

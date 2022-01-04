@@ -9,7 +9,7 @@ import (
 	"github.com/scalar-labs/dl/rpc"
 )
 
-func Test_ProofKey_Equal(t *testing.T) {
+func TestProofKey_Equal(t *testing.T) {
 	var shouldBeTrue = ProofKey{
 		ID:  "foo",
 		Age: 1,
@@ -35,7 +35,7 @@ func Test_ProofKey_Equal(t *testing.T) {
 	}
 }
 
-func Test_ProofKey_Compare(t *testing.T) {
+func TestProofKey_Compare(t *testing.T) {
 	var shouldBe0 = ProofKey{
 		ID:  "foo",
 		Age: 1,
@@ -97,7 +97,7 @@ func Test_ProofKey_Compare(t *testing.T) {
 	}
 }
 
-func Test_Proof_FromGRPC(t *testing.T) {
+func TestProof_FromGRPC(t *testing.T) {
 	var proof = FromGRPC(&rpc.AssetProof{
 		AssetId:   "foo",
 		Age:       999,
@@ -141,7 +141,7 @@ func Test_Proof_FromGRPC(t *testing.T) {
 	}
 }
 
-func Test_Proof_Equal(t *testing.T) {
+func TestProof_Equal(t *testing.T) {
 	var shouldBeTrue = Proof{
 		ID:        "foo",
 		Age:       999,
@@ -191,7 +191,7 @@ func Test_Proof_Equal(t *testing.T) {
 	}
 }
 
-func Test_Proof_ValueEqual(t *testing.T) {
+func TestProof_ValueEqual(t *testing.T) {
 	var shouldBeTrue = Proof{
 		ID:        "foo",
 		Age:       999,
@@ -237,7 +237,7 @@ func Test_Proof_ValueEqual(t *testing.T) {
 	}
 }
 
-func Test_Proof_Serialize(t *testing.T) {
+func TestProof_Serialize(t *testing.T) {
 	var (
 		proof = Proof{
 			ID:       "foo",
@@ -264,7 +264,7 @@ func Test_Proof_Serialize(t *testing.T) {
 	}
 }
 
-func Test_Proof_String(t *testing.T) {
+func TestProof_String(t *testing.T) {
 	var (
 		proof = Proof{
 			ID:        "foo",
@@ -284,7 +284,7 @@ func Test_Proof_String(t *testing.T) {
 	}
 }
 
-func Test_Proof_VerifyWith(t *testing.T) {
+func TestProof_VerifyWith(t *testing.T) {
 	var proof = Proof{
 		ID:       "foo",
 		Age:      999,

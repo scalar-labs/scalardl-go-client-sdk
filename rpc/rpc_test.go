@@ -14,7 +14,7 @@ XYWdrgo0Y3eXEhvK0lsURO9N0nrPiQWT4A==
 -----END EC PRIVATE KEY-----
 `
 
-func Test_ContractRegistrationRequest_SignWith(t *testing.T) {
+func TestContractRegistrationRequest_SignWith(t *testing.T) {
 	var (
 		signer  crypto.Signer
 		err     error
@@ -41,7 +41,7 @@ func Test_ContractRegistrationRequest_SignWith(t *testing.T) {
 	}
 }
 
-func Test_ContractsListingRequest_SignWith(t *testing.T) {
+func TestContractsListingRequest_SignWith(t *testing.T) {
 	var (
 		signer  crypto.Signer
 		err     error
@@ -65,7 +65,7 @@ func Test_ContractsListingRequest_SignWith(t *testing.T) {
 	}
 }
 
-func Test_ContractExecutionRequest_SignWith(t *testing.T) {
+func TestContractExecutionRequest_SignWith(t *testing.T) {
 	var (
 		signer  crypto.Signer
 		err     error
@@ -90,7 +90,7 @@ func Test_ContractExecutionRequest_SignWith(t *testing.T) {
 	}
 }
 
-func Test_LedgerValidationRequest_SignWith(t *testing.T) {
+func TestLedgerValidationRequest_SignWith(t *testing.T) {
 	var (
 		signer  crypto.Signer
 		err     error
@@ -116,7 +116,7 @@ func Test_LedgerValidationRequest_SignWith(t *testing.T) {
 	}
 }
 
-func Test_LedgersValidationRequest_SignWith(t *testing.T) {
+func TestLedgersValidationRequest_SignWith(t *testing.T) {
 	var (
 		signer  crypto.Signer
 		err     error
@@ -140,7 +140,7 @@ func Test_LedgersValidationRequest_SignWith(t *testing.T) {
 	}
 }
 
-func Test_AssetProofRetrievalRequest_SignWith(t *testing.T) {
+func TestAssetProofRetrievalRequest_SignWith(t *testing.T) {
 	var (
 		signer  crypto.Signer
 		err     error
@@ -165,7 +165,7 @@ func Test_AssetProofRetrievalRequest_SignWith(t *testing.T) {
 	}
 }
 
-func Test_ExecutionAbortRequest_SignWithSigner(t *testing.T) {
+func TestExecutionAbortRequest_SignWithSigner(t *testing.T) {
 	var (
 		signer  crypto.Signer
 		err     error
