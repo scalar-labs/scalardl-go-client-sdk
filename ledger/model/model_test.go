@@ -8,7 +8,7 @@ import (
 	"github.com/scalar-labs/dl/ledger/statuscode"
 )
 
-func Test_LedgerValidationResult_Equal(t *testing.T) {
+func TestLedgerValidationResult_Equal(t *testing.T) {
 	shouldBeTrue := LedgerValidationResult{
 		Code: statuscode.OK,
 		Proof: asset.Proof{
@@ -110,7 +110,7 @@ func Test_LedgerValidationResult_Equal(t *testing.T) {
 	}
 }
 
-func Test_ContractExecutionResult_Equal(t *testing.T) {
+func TestContractExecutionResult_Equal(t *testing.T) {
 	shouldBeTrue := ContractExecutionResult{
 		Result: dl.JSONObject{"argument": "parameter"},
 		Proofs: []asset.Proof{{
