@@ -6,7 +6,7 @@ import (
 	"github.com/scalar-labs/dl/ledger/statuscode"
 )
 
-func Test_NewClientError_StatusCodeAndMessage_ShouldBeSuccessful(t *testing.T) {
+func TestNewClientError(t *testing.T) {
 	var err ClientError = ClientError{
 		statusCode: 401,
 		message:    "error message",

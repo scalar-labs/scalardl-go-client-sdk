@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func Test_EqualWithSameJsonObject_ShouldBeTrue(t *testing.T) {
+func TestJSONObject_Equal(t *testing.T) {
 	var shouldBeEquivalent bool = JSONObject{
 		"object": JSONObject{
 			"number": 1.23,
@@ -21,9 +21,6 @@ func Test_EqualWithSameJsonObject_ShouldBeTrue(t *testing.T) {
 		t.Errorf("JSONObject.Equal should be able distinguish two JSONObject variables that have same values")
 	}
 
-}
-
-func Test_EqualWithDifferentJsonObject_ShouldBeFalse(t *testing.T) {
 	var shouldNotBeEquivalent bool = JSONObject{
 		"object": JSONObject{
 			"number": 0,
@@ -41,7 +38,7 @@ func Test_EqualWithDifferentJsonObject_ShouldBeFalse(t *testing.T) {
 	}
 }
 
-func Test_String_ShouldReturnCorrectJSON(t *testing.T) {
+func TestJSONObject_String(t *testing.T) {
 	var (
 		object = JSONObject{
 			"string": "i-am-string",
@@ -63,7 +60,7 @@ func Test_String_ShouldReturnCorrectJSON(t *testing.T) {
 	}
 }
 
-func Test_FromJSON_WithCorrectJSON_ShouldReturnCorrectJSONObject(t *testing.T) {
+func TestFromJSON(t *testing.T) {
 	var (
 		object JSONObject
 		err    error
@@ -76,13 +73,6 @@ func Test_FromJSON_WithCorrectJSON_ShouldReturnCorrectJSONObject(t *testing.T) {
 	if object["foo"] != "bar" {
 		t.Errorf("should return corect JSONObject")
 	}
-}
-
-func Test_FromJSON_WithIncorrectJSON_ShouldNotReturnCorrectJSONObject(t *testing.T) {
-	var (
-		object JSONObject
-		err    error
-	)
 
 	if object, err = FromJSON(``); err == nil {
 		t.Errorf("should NOT be able to parse JSON")
@@ -93,7 +83,7 @@ func Test_FromJSON_WithIncorrectJSON_ShouldNotReturnCorrectJSONObject(t *testing
 	}
 }
 
-func Test_WithNonce_ShouldAddNonce(t *testing.T) {
+func TestJSONObject_WithNonce(t *testing.T) {
 	var (
 		object JSONObject = JSONObject{}
 	)
