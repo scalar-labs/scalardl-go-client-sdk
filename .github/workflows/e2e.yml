@@ -49,6 +49,7 @@ jobs:
       run: |
         ./smallbank_benchmark \
           -properties ../scalardl.properties \
+          -num-concurrencies 2 \
           -duration 30 \
           -num-accounts 100 \
           -ramp-up-time 0
@@ -105,6 +106,7 @@ jobs:
       run: |
         ./smallbank_benchmark \
           -properties ../scalardl.auditor-enabled.properties \
+          -num-concurrencies 2 \
           -duration 30 \
           -num-accounts 100 \
           -ramp-up-time 0
