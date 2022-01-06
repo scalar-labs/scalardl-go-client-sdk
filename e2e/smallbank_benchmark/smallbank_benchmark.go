@@ -11,11 +11,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/scalar-labs/dl"
-	client_config "github.com/scalar-labs/dl/client/config"
-	client_error "github.com/scalar-labs/dl/client/error"
-	client_service "github.com/scalar-labs/dl/client/service"
-	"github.com/scalar-labs/dl/ledger/statuscode"
+	"github.com/scalar-labs/dl/v3"
+	client_config "github.com/scalar-labs/dl/v3/client/config"
+	client_error "github.com/scalar-labs/dl/v3/client/error"
+	client_service "github.com/scalar-labs/dl/v3/client/service"
+	"github.com/scalar-labs/dl/v3/ledger/statuscode"
 )
 
 var (

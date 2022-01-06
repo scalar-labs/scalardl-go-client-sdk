@@ -1,9 +1,9 @@
 package service
 
 import (
-	clientError "github.com/scalar-labs/dl/client/error"
-	"github.com/scalar-labs/dl/ledger/statuscode"
-	"github.com/scalar-labs/dl/rpc"
+	clientError "github.com/scalar-labs/dl/v3/client/error"
+	"github.com/scalar-labs/dl/v3/ledger/statuscode"
+	"github.com/scalar-labs/dl/v3/rpc"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/proto"
 )

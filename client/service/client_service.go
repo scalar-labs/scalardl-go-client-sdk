@@ -4,8 +4,8 @@ import (
 	"crypto/x509"
 	"fmt"
 
-	"github.com/scalar-labs/dl/client/config"
-	"github.com/scalar-labs/dl/crypto"
+	"github.com/scalar-labs/dl/v3/client/config"
+	"github.com/scalar-labs/dl/v3/crypto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )

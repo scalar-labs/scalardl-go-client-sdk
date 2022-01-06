@@ -3,7 +3,7 @@ package error
 import (
 	"testing"
 
-	"github.com/scalar-labs/dl/ledger/statuscode"
+	"github.com/scalar-labs/dl/v3/ledger/statuscode"
 )
 
 func TestNewClientError(t *testing.T) {

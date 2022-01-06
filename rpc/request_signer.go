@@ -4,7 +4,7 @@ import (
 	"encoding/binary"
 	"unsafe"
 
-	"github.com/scalar-labs/dl/crypto"
+	"github.com/scalar-labs/dl/v3/crypto"
 )
 
 // SignWith signs ContractRegistrationRequest with the given signer and fill the signature.
