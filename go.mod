@@ -1,4 +1,4 @@
-module github.com/scalar-labs/dl/v3
+module github.com/scalar-labs/scalardl-go-client-sdk/v3
 
 go 1.17
 

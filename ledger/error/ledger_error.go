@@ -1,6 +1,6 @@
 package error
 
-import "github.com/scalar-labs/dl/v3/ledger/statuscode"
+import "github.com/scalar-labs/scalardl-go-client-sdk/v3/ledger/statuscode"
 
 // LedgerError represents the errors fromo Ledger.
 // It implements the Error interface.

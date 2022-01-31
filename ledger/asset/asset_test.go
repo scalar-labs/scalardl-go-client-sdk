@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/scalar-labs/dl/v3"
-	"github.com/scalar-labs/dl/v3/crypto"
-	"github.com/scalar-labs/dl/v3/rpc"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/crypto"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/rpc"
 )
 
 func TestProofKey_Equal(t *testing.T) {

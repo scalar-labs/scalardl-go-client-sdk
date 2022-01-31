@@ -3,8 +3,8 @@ package model
 import (
 	"fmt"
 
-	"github.com/scalar-labs/dl/v3"
-	"github.com/scalar-labs/dl/v3/ledger/asset"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/ledger/asset"
 )
 
 // ContractExecutionResult defines the result of a contract execution.

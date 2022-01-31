@@ -1,6 +1,6 @@
 package error
 
-import "github.com/scalar-labs/dl/v3/ledger/statuscode"
+import "github.com/scalar-labs/scalardl-go-client-sdk/v3/ledger/statuscode"
 
 // ClientError is used when ClientService has errors.
 // It implements the Error interface.
