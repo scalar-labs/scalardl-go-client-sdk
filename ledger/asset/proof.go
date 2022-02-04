@@ -8,8 +8,8 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/scalar-labs/scalardl-go-client-sdk/v3"
 	"github.com/scalar-labs/scalardl-go-client-sdk/v3/crypto"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/jsonobject"
 	"github.com/scalar-labs/scalardl-go-client-sdk/v3/rpc"
 )
 
@@ -18,7 +18,7 @@ type Proof struct {
 	ID        string
 	Age       int32
 	Nonce     string
-	Input     dl.JSONObject
+	Input     jsonobject.JSONObject
 	Hash      []byte
 	PrevHash  []byte
 	Signature []byte
@@ -31,8 +31,8 @@ func FromGRPC(p *rpc.AssetProof) Proof {
 		return Proof{}
 	}
 
-	var input dl.JSONObject
-	input, _ = dl.FromJSON(p.GetInput())
+	var input jsonobject.JSONObject
+	input, _ = jsonobject.FromJSON(p.GetInput())
 
 	return Proof{
 		ID:        p.GetAssetId(),

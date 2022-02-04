@@ -1,4 +1,4 @@
-package dl
+package jsonobject
 
 import (
 	"encoding/json"
