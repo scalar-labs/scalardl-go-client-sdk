@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/scalar-labs/dl/ledger/asset"
-	"github.com/scalar-labs/dl/ledger/statuscode"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/ledger/asset"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/ledger/statuscode"
 )
 
 // LedgerValidationResult defines the specified status code and the asset proof from Ledger and Auditor.

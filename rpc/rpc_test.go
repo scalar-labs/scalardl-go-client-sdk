@@ -3,7 +3,7 @@ package rpc
 import (
 	"testing"
 
-	"github.com/scalar-labs/dl/crypto"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/crypto"
 )
 
 const testKey = `
