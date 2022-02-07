@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/scalar-labs/scalardl-go-client-sdk/v3/crypto"
-	"github.com/scalar-labs/scalardl-go-client-sdk/v3/jsonobject"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/json"
 	"github.com/scalar-labs/scalardl-go-client-sdk/v3/rpc"
 )
 
@@ -124,7 +124,7 @@ func TestProof_FromGRPC(t *testing.T) {
 		t.Errorf("Nonce is not correctly parsed")
 	}
 
-	if !proof.Input.Equal(jsonobject.JSONObject{"argument": "parameter"}) {
+	if !proof.Input.Equal(json.JSONObject{"argument": "parameter"}) {
 		t.Errorf("Input is not correctly parsed")
 	}
 
@@ -146,7 +146,7 @@ func TestProof_Equal(t *testing.T) {
 		ID:        "foo",
 		Age:       999,
 		Nonce:     "a-nonce",
-		Input:     jsonobject.JSONObject{"argument": "parameter"},
+		Input:     json.JSONObject{"argument": "parameter"},
 		Hash:      []byte{0x00, 0x01},
 		PrevHash:  []byte{0xCA, 0xFE},
 		Signature: []byte{0xAA, 0xDD},
@@ -155,7 +155,7 @@ func TestProof_Equal(t *testing.T) {
 		ID:        "foo",
 		Age:       999,
 		Nonce:     "a-nonce",
-		Input:     jsonobject.JSONObject{"argument": "parameter"},
+		Input:     json.JSONObject{"argument": "parameter"},
 		Hash:      []byte{0x00, 0x01},
 		PrevHash:  []byte{0xCA, 0xFE},
 		Signature: []byte{0xAA, 0xDD},
@@ -170,7 +170,7 @@ func TestProof_Equal(t *testing.T) {
 		ID:        "foo",
 		Age:       999,
 		Nonce:     "a-nonce",
-		Input:     jsonobject.JSONObject{"argument": "parameter"},
+		Input:     json.JSONObject{"argument": "parameter"},
 		Hash:      []byte{0x55, 0x66},
 		PrevHash:  []byte{0xCA, 0xFE},
 		Signature: []byte{0xAA, 0xDD},
@@ -179,7 +179,7 @@ func TestProof_Equal(t *testing.T) {
 		ID:        "foo",
 		Age:       999,
 		Nonce:     "a-nonce",
-		Input:     jsonobject.JSONObject{"argument": "parameter"},
+		Input:     json.JSONObject{"argument": "parameter"},
 		Hash:      []byte{0x00, 0x01},
 		PrevHash:  []byte{0xCA, 0xFE},
 		Signature: []byte{0xAA, 0xDD},
@@ -196,7 +196,7 @@ func TestProof_ValueEqual(t *testing.T) {
 		ID:        "foo",
 		Age:       999,
 		Nonce:     "a-nonce",
-		Input:     jsonobject.JSONObject{"argument": "parameter"},
+		Input:     json.JSONObject{"argument": "parameter"},
 		Hash:      []byte{0x00, 0x01},
 		PrevHash:  []byte{0xCA, 0xFE},
 		Signature: []byte{0x11, 0x22},
@@ -205,7 +205,7 @@ func TestProof_ValueEqual(t *testing.T) {
 		ID:        "foo",
 		Age:       999,
 		Nonce:     "a-nonce",
-		Input:     jsonobject.JSONObject{"argument": "parameter"},
+		Input:     json.JSONObject{"argument": "parameter"},
 		Hash:      []byte{0x00, 0x01},
 		PrevHash:  []byte{0xCA, 0xFE},
 		Signature: []byte{0x33, 0x44}, // different
@@ -220,14 +220,14 @@ func TestProof_ValueEqual(t *testing.T) {
 		ID:       "foo",
 		Age:      999,
 		Nonce:    "a-nonce",
-		Input:    jsonobject.JSONObject{"argument": "parameter"},
+		Input:    json.JSONObject{"argument": "parameter"},
 		Hash:     []byte{0x55, 0x66},
 		PrevHash: []byte{0xCA, 0xFE},
 	}.Equal(Proof{
 		ID:       "foo",
 		Age:      999,
 		Nonce:    "a-nonce",
-		Input:    jsonobject.JSONObject{"argument": "parameter"},
+		Input:    json.JSONObject{"argument": "parameter"},
 		Hash:     []byte{0x00, 0x01},
 		PrevHash: []byte{0xCA, 0xFE},
 	})
@@ -243,7 +243,7 @@ func TestProof_Serialize(t *testing.T) {
 			ID:       "foo",
 			Age:      999,
 			Nonce:    "a-nonce",
-			Input:    jsonobject.JSONObject{"argument": "parameter"},
+			Input:    json.JSONObject{"argument": "parameter"},
 			Hash:     []byte{0x00, 0x01},
 			PrevHash: []byte{0xCA, 0xFE},
 		}
@@ -270,7 +270,7 @@ func TestProof_String(t *testing.T) {
 			ID:        "foo",
 			Age:       999,
 			Nonce:     "a-nonce",
-			Input:     jsonobject.JSONObject{"argument": "parameter"},
+			Input:     json.JSONObject{"argument": "parameter"},
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0xCA, 0xFE},
 			Signature: []byte{0x11, 0x22},
@@ -289,7 +289,7 @@ func TestProof_VerifyWith(t *testing.T) {
 		ID:       "foo",
 		Age:      999,
 		Nonce:    "a-nonce",
-		Input:    jsonobject.JSONObject{"argument": "parameter"},
+		Input:    json.JSONObject{"argument": "parameter"},
 		Hash:     []byte{0x00, 0x01},
 		PrevHash: []byte{0xCA, 0xFE},
 		Signature: []byte{

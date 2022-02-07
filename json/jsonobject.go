@@ -1,7 +1,7 @@
-package jsonobject
+package json
 
 import (
-	"encoding/json"
+	ej "encoding/json"
 	"reflect"
 
 	"github.com/google/uuid"
@@ -19,7 +19,7 @@ func (j JSONObject) Equal(another JSONObject) bool {
 func (j JSONObject) String() (s string) {
 	s = "{}"
 
-	if marshaled, err := json.Marshal(j); err == nil {
+	if marshaled, err := ej.Marshal(j); err == nil {
 		s = (string)(marshaled)
 	}
 
@@ -28,7 +28,7 @@ func (j JSONObject) String() (s string) {
 
 // FromJSON creates JSONObject from JSON.
 func FromJSON(s string) (o JSONObject, err error) {
-	err = json.Unmarshal([]byte(s), &o)
+	err = ej.Unmarshal([]byte(s), &o)
 	return
 }
 

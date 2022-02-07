@@ -1,4 +1,4 @@
-package jsonobject
+package json
 
 import (
 	"testing"
