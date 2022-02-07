@@ -10,7 +10,7 @@ import (
 // ContractExecutionResult defines the result of a contract execution.
 // It contains the result of the contract execution along with a list of asset proofs from Ledger and Auditor.
 type ContractExecutionResult struct {
-	Result        json.JSONObject
+	Result        json.Object
 	Proofs        []asset.Proof
 	AuditorProofs []asset.Proof
 }
@@ -18,8 +18,8 @@ type ContractExecutionResult struct {
 // Equal checks if two contract execution results have the same values.
 func (r ContractExecutionResult) Equal(another ContractExecutionResult) (equal bool) {
 	var (
-		myResult      json.JSONObject = r.Result
-		anotherResult json.JSONObject = another.Result
+		myResult      json.Object = r.Result
+		anotherResult json.Object = another.Result
 	)
 
 	if (myResult == nil && anotherResult != nil) || (myResult != nil && anotherResult == nil) {

@@ -4,50 +4,50 @@ import (
 	"testing"
 )
 
-func TestJSONObject_Equal(t *testing.T) {
-	var shouldBeEquivalent bool = JSONObject{
-		"object": JSONObject{
+func TestObject_Equal(t *testing.T) {
+	var shouldBeEquivalent bool = Object{
+		"object": Object{
 			"number": 1.23,
 			"string": "string",
 		},
-	}.Equal(JSONObject{
-		"object": JSONObject{
+	}.Equal(Object{
+		"object": Object{
 			"number": 1.23,
 			"string": "string",
 		},
 	})
 
 	if !shouldBeEquivalent {
-		t.Errorf("JSONObject.Equal should be able distinguish two JSONObject variables that have same values")
+		t.Errorf("Object.Equal should be able distinguish two Object variables that have same values")
 	}
 
-	var shouldNotBeEquivalent bool = JSONObject{
-		"object": JSONObject{
+	var shouldNotBeEquivalent bool = Object{
+		"object": Object{
 			"number": 0,
 			"string": "hello world",
 		},
-	}.Equal(JSONObject{
-		"object": JSONObject{
+	}.Equal(Object{
+		"object": Object{
 			"number": 1.23,
 			"string": "string",
 		},
 	})
 
 	if shouldNotBeEquivalent {
-		t.Errorf("JSONObject.Equal should be able distinguish two JSONObject variables that have different values")
+		t.Errorf("Object.Equal should be able distinguish two Object variables that have different values")
 	}
 }
 
-func TestJSONObject_String(t *testing.T) {
+func TestObject_String(t *testing.T) {
 	var (
-		object = JSONObject{
+		object = Object{
 			"string": "i-am-string",
 			"number": 0,
-			"array": []JSONObject{
+			"array": []Object{
 				{"in-array1": "array1"},
 				{"in-array2": "array2"},
 			},
-			"object": JSONObject{
+			"object": Object{
 				"in-object": "object",
 			},
 		}
@@ -62,7 +62,7 @@ func TestJSONObject_String(t *testing.T) {
 
 func TestFromJSON(t *testing.T) {
 	var (
-		object JSONObject
+		object Object
 		err    error
 	)
 
@@ -71,7 +71,7 @@ func TestFromJSON(t *testing.T) {
 	}
 
 	if object["foo"] != "bar" {
-		t.Errorf("should return corect JSONObject")
+		t.Errorf("should return corect Object")
 	}
 
 	if object, err = FromJSON(``); err == nil {
@@ -79,6 +79,6 @@ func TestFromJSON(t *testing.T) {
 	}
 
 	if object != nil {
-		t.Errorf("should be a nil JSONObject")
+		t.Errorf("should be a nil Object")
 	}
 }

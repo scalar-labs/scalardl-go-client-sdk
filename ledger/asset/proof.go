@@ -18,7 +18,7 @@ type Proof struct {
 	ID        string
 	Age       int32
 	Nonce     string
-	Input     json.JSONObject
+	Input     json.Object
 	Hash      []byte
 	PrevHash  []byte
 	Signature []byte
@@ -31,7 +31,7 @@ func FromGRPC(p *rpc.AssetProof) Proof {
 		return Proof{}
 	}
 
-	var input json.JSONObject
+	var input json.Object
 	input, _ = json.FromJSON(p.GetInput())
 
 	return Proof{
