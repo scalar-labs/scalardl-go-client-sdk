@@ -82,24 +82,3 @@ func TestFromJSON(t *testing.T) {
 		t.Errorf("should be a nil JSONObject")
 	}
 }
-
-func TestJSONObject_WithNonce(t *testing.T) {
-	var (
-		object JSONObject = JSONObject{}
-	)
-
-	object.WithNonce()
-
-	var (
-		nonce string
-		ok    bool
-	)
-
-	if nonce, ok = object["nonce"].(string); !ok {
-		t.Errorf("should add nonce")
-	}
-
-	if nonce == "" {
-		t.Errorf("should be uuid")
-	}
-}

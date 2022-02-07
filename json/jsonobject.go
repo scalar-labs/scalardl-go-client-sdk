@@ -3,8 +3,6 @@ package json
 import (
 	ej "encoding/json"
 	"reflect"
-
-	"github.com/google/uuid"
 )
 
 // JSONObject is a general structure to represent JavaScript objects.
@@ -30,16 +28,4 @@ func (j JSONObject) String() (s string) {
 func FromJSON(s string) (o JSONObject, err error) {
 	err = ej.Unmarshal([]byte(s), &o)
 	return
-}
-
-// WithNonce checks if the object contains `nonce` properties.
-// If not, then add one.
-func (j *JSONObject) WithNonce() {
-	if _, ok := (*j)["nonce"]; !ok {
-		(*j)["nonce"] = uuid.NewString()
-	}
-
-	if (*j)["nonce"] == "" {
-		(*j)["nonce"] = uuid.NewString()
-	}
 }
