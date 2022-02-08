@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-// Object is a general structure to represent JavaScript objects.
+// Object is a general structure to represent JSON objects.
 type Object map[string]interface{}
 
 // Equal checks if the json.Object has the same values with another one.
