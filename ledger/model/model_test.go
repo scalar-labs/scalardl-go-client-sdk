@@ -3,7 +3,7 @@ package model
 import (
 	"testing"
 
-	"github.com/scalar-labs/scalardl-go-client-sdk/v3"
+	"github.com/scalar-labs/scalardl-go-client-sdk/v3/json"
 	"github.com/scalar-labs/scalardl-go-client-sdk/v3/ledger/asset"
 	"github.com/scalar-labs/scalardl-go-client-sdk/v3/ledger/statuscode"
 )
@@ -14,7 +14,7 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 		Proof: asset.Proof{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -24,7 +24,7 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 		AuditorProof: asset.Proof{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -36,7 +36,7 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 		Proof: asset.Proof{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -46,7 +46,7 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 		AuditorProof: asset.Proof{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -64,7 +64,7 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 		Proof: asset.Proof{
 			ID:        "bar",
 			Age:       1,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -74,7 +74,7 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 		AuditorProof: asset.Proof{
 			ID:        "bar",
 			Age:       1,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -86,7 +86,7 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 		Proof: asset.Proof{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -96,7 +96,7 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 		AuditorProof: asset.Proof{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -112,11 +112,11 @@ func TestLedgerValidationResult_Equal(t *testing.T) {
 
 func TestContractExecutionResult_Equal(t *testing.T) {
 	shouldBeTrue := ContractExecutionResult{
-		Result: dl.JSONObject{"argument": "parameter"},
+		Result: json.Object{"argument": "parameter"},
 		Proofs: []asset.Proof{{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -126,7 +126,7 @@ func TestContractExecutionResult_Equal(t *testing.T) {
 		AuditorProofs: []asset.Proof{{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -134,11 +134,11 @@ func TestContractExecutionResult_Equal(t *testing.T) {
 			Key:       asset.ProofKey{ID: "foo", Age: 999},
 		}},
 	}.Equal(ContractExecutionResult{
-		Result: dl.JSONObject{"argument": "parameter"},
+		Result: json.Object{"argument": "parameter"},
 		Proofs: []asset.Proof{{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -148,7 +148,7 @@ func TestContractExecutionResult_Equal(t *testing.T) {
 		AuditorProofs: []asset.Proof{{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -162,11 +162,11 @@ func TestContractExecutionResult_Equal(t *testing.T) {
 	}
 
 	shouldBeFalse := ContractExecutionResult{
-		Result: dl.JSONObject{"argument": "parameter"},
+		Result: json.Object{"argument": "parameter"},
 		Proofs: []asset.Proof{{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -176,7 +176,7 @@ func TestContractExecutionResult_Equal(t *testing.T) {
 		AuditorProofs: []asset.Proof{{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -184,11 +184,11 @@ func TestContractExecutionResult_Equal(t *testing.T) {
 			Key:       asset.ProofKey{ID: "foo", Age: 999},
 		}},
 	}.Equal(ContractExecutionResult{
-		Result: dl.JSONObject{"argument": "parameter"},
+		Result: json.Object{"argument": "parameter"},
 		Proofs: []asset.Proof{{
 			ID:        "bar",
 			Age:       0,
-			Input:     dl.JSONObject{},
+			Input:     json.Object{},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
@@ -198,7 +198,7 @@ func TestContractExecutionResult_Equal(t *testing.T) {
 		AuditorProofs: []asset.Proof{{
 			ID:        "foo",
 			Age:       999,
-			Input:     dl.JSONObject{"argument": "parameter"},
+			Input:     json.Object{"argument": "parameter"},
 			Nonce:     "i-am-nonce",
 			Hash:      []byte{0x00, 0x01},
 			PrevHash:  []byte{0x11, 0x22},
