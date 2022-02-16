@@ -55,7 +55,7 @@ func (s ClientService) ValidateLedger(args ...interface{}) (result model.LedgerV
 		return result, fmt.Errorf("assetID cannot be empty")
 	}
 
-	if endAge < startAge || startAge < 0 {
+	if endAge < startAge || startAge < 0 || endAge > JavaMaxIntValue {
 		return result, fmt.Errorf("invalid ages specified")
 	}
 
@@ -68,9 +68,8 @@ func (s ClientService) ValidateLedger(args ...interface{}) (result model.LedgerV
 			"asset_id": assetID,
 		}
 
-		if endAge != JavaMaxIntValue {
-			argument["age"] = endAge
-		}
+		argument["start_age"] = startAge
+		argument["end_age"] = endAge
 
 		var executed model.ContractExecutionResult
 
