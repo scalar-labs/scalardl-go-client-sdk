@@ -99,7 +99,7 @@ func (s ClientService) ExecuteContract(
 		return
 	}
 
-	// send the execution validation reqeust to Auditor.k
+	// send the execution validation reqeust to Auditor.
 	if s.clientConfig.IsAuditorEnabled {
 		trailer = metadata.MD{}
 
