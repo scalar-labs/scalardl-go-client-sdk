@@ -1,4 +1,10 @@
-In this folder, we can see four main packages in different sub-folders, register_certificate, register_contract, execute_contract and validate_ledger. They demonstrate how to use Scalar DL Go Client SDK to send basic operation requests to Scalar DL networks.
+In this folder, we can see four main packages in different sub-folders:
+- register_certificate
+- register_contract
+- execute_contract
+- validate_ledger
+
+They demonstrate how to use Scalar DL Go Client SDK to send basic operation requests to Scalar DL networks.
 
 To build all of them
 ```
