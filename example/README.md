@@ -13,7 +13,7 @@ go build
 ```
 
 ## Local Scalar DL Network
-We need a local Auditor-enabled Scalar DL network before we run these examples.
+We need a local Scalar DL network before we run these examples.
 
 Reference [scalardl-samples
 ](https://github.com/scalar-labs/scalardl-samples) to start up local Scalar DL networks.
@@ -38,10 +38,6 @@ Run
 
 ```
 ./register_contract/register_contract -properties client.properties -contract StateUpdater.class -id state-updater -name com.org1.contract.StateUpdater
-```
-
-```
-./register_contract/register_contract -properties client.properties -contract ValidateLedger.class -id validate-ledger -name com.scalar.dl.client.contract.ValidateLedger
 ```
 
 to register three contracts of the example.
