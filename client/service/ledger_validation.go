@@ -121,22 +121,19 @@ func (s ClientService) ValidateLedger(args ...interface{}) (result model.LedgerV
 			if !s.clientConfig.IsAuditorEnabled {
 				r <- nil
 				e <- nil
+			} else {
+				auditor := rpc.NewAuditorClient(s.auditorConnection)
+				trailer := metadata.MD{}
+
+				response, err := auditor.ValidateLedger(context.Background(), request, grpc.Trailer(&trailer))
+
+				if err != nil && trailer.Len() > 0 {
+					err = getClientErrorFromTrailer(trailer)
+				}
+
+				r <- response
+				e <- err
 			}
-
-			auditor := rpc.NewAuditorClient(s.auditorConnection)
-			trailer := metadata.MD{}
-
-			response, err := auditor.ValidateLedger(context.Background(), request, grpc.Trailer(&trailer))
-
-			if err != nil && trailer.Len() > 0 {
-				err = getClientErrorFromTrailer(trailer)
-			}
-
-			r <- response
-			e <- err
-
-			close(r)
-			close(e)
 		}(auditorChan, auditorErrorChan)
 
 		go func(r chan *rpc.LedgerValidationResponse, e chan error) {
@@ -151,15 +148,21 @@ func (s ClientService) ValidateLedger(args ...interface{}) (result model.LedgerV
 
 			r <- response
 			e <- err
-			close(r)
-			close(e)
 		}(ledgerChan, ledgerErrorChan)
 
-		if responseFromLedger, err = <-ledgerChan, <-ledgerErrorChan; err != nil {
+		var errFromLedger error
+		responseFromLedger, errFromLedger = <-ledgerChan, <-ledgerErrorChan
+
+		var errFromAuditor error
+		responseFromAuditor, err = <-auditorChan, <-auditorErrorChan
+
+		if errFromLedger != nil {
+			err = errFromLedger
 			return
 		}
 
-		if responseFromAuditor, err = <-auditorChan, <-auditorErrorChan; err != nil {
+		if errFromAuditor != nil {
+			err = errFromAuditor
 			return
 		}
 
