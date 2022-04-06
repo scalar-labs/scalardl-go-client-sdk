@@ -35,6 +35,7 @@ require (
 )
 
 retract (
+	v3.5.2 // Contains retractions only.
 	v3.5.1 // Contains retractions only.
 	v3.5.0 // Published accidentally.
 	v3.0.1 // Contains retractions only.
