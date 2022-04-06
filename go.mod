@@ -33,3 +33,8 @@ require (
 	gopkg.in/ini.v1 v1.63.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
+
+retract (
+	v3.5.1 // Contains retractions only.
+	v3.5.0 // Published accidentally.
+)
