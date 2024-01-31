@@ -1,3 +1,9 @@
+> [!CAUTION]
+> 
+> The `docs` folder has been moved to the centralized documentation repository, [docs-internal](https://github.com/scalar-labs/docs-internal). Please update this documentation in that repository instead.
+> 
+> To view the ScalarDL documentation, visit [ScalarDL Documentation](https://scalardl.scalar-labs.com/docs/).
+
 # Scalar DL Go Client SDK
 This module is for developing applications that interact with [Scalar DL](https://github.com/scalar-labs/scalardl) networks.
 
